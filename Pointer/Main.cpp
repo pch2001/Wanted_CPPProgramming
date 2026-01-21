@@ -1,5 +1,17 @@
 #include <iostream>
 
+#ifdef _DEBUG
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+// Replace _NORMAL_BLOCK with _CLIENT_BLOCK if you want the
+// allocations to be of _CLIENT_BLOCK type
+#else
+#define DBG_NEW new
+#endif
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 void DeletePointer(void*& pointer)
 {
 	if (pointer != nullptr)
@@ -11,8 +23,16 @@ void DeletePointer(void*& pointer)
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	//_CrtSetBreakAlloc(156);
+
+	// todo 메모리 릭 일부러 발생시키기
+	int* intPointer = DBG_NEW int; // DBG_NEW -> new 변경
+	delete intPointer;
+
 	//동적 할당
-	char* buffer = new char[10];
+	//char* buffer = new char[10];
 	
 
 
@@ -34,6 +54,8 @@ int main()
 		std::cout << "Pointer is null\n";
 	}
 
-	// 의미는 없음.
+	//todo : fuck
+
+
 	std::cin.get();
 }
