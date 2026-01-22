@@ -1,5 +1,8 @@
 ﻿#include <iostream>
 #include "string"
+#include <Windows.h>
+
+#define MyTest(x,y) x*y+1234
 
 class Player {
 public:
@@ -43,6 +46,11 @@ int main() {
 	Player player("hoohoohoo");
 
 
+
+	//wide-character
+	const wchar_t* wideString = TEXT("Hello wide string");
+	std::wcout <<  wideString << TEXT("\n");
+	auto a = MyTest(33, 44);
 	std::cin.get();
 
 }
