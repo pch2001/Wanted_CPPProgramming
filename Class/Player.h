@@ -8,7 +8,8 @@ class Player {
 
 public:
 	Player();
-	~Player() = default;
+	Player(const char* inName);
+	~Player();
 	
 	void Move(int inX, int inY);
 
@@ -16,4 +17,8 @@ private:
 	int x = 0;
 	int y = 0;
 	int speed = 0;
+
+	// 이름 값(문자열)
+	char* name = nullptr;
+
 };

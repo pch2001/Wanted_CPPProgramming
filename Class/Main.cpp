@@ -7,7 +7,7 @@ int main() {
 	Player player1;
 
 
-	Player* player2 = new Player();
+	Player* player2 = new Player("choo");
 	player2->Move(3, 10);
 	delete player2;
 	player2 = nullptr;
