@@ -101,6 +101,7 @@ private:
 
 class NameCard {
 public :
+	NameCard();
 	NameCard(const char* one, const char* two, const char* three, const char* four) {
 		int onelength = strlen(one)+1;
 		int twolength = strlen(two)+1;
@@ -117,6 +118,7 @@ public :
 		strcpy_s(email, threelength, three);
 		strcpy_s(job, fourlength, four);
 	}
+
 	void ShowData() {
 		std::cout << "이    름: " << name<<"\n";
 		std::cout << "전화번호: " << number<<"\n";
@@ -138,6 +140,36 @@ private:
 	char* job = nullptr;
 };
 
+void SettingData(const int& number) {
+	char name[100];
+	char phonenumber[100];
+	char email[100];
+	char job[100];
+
+	NameCard* cardpack[3];
+
+	for (int i = 0; i < number; i++) {
+		std::cout << "이름 입력 : ";
+		std::cin >> name;
+
+		std::cout << "전화번호 입력 :";
+		std::cin >> phonenumber;
+
+		std::cout << "메일 입력 :";
+		std::cin >> email;
+
+		std::cout << "직업 입력 :";
+		std:: cin >> job;
+
+		cardpack[i] = new NameCard(name, phonenumber, email, job);
+	}
+
+	for (int i = 0; i < number; i++) {
+		cardpack[i]->ShowData();
+		std::cout << "\n";
+		delete cardpack[i];
+	}
+}
 
 void Problem1() {
 	Calculator calculator;
@@ -181,7 +213,9 @@ int main()
 	//Problem1();
 	//Problem2();
 	//Problem3();
-	Problem4();
+	//Problem4();
+	
+	SettingData(3);
 
 	std::cin.get();
 }
