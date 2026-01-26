@@ -2,11 +2,19 @@
 
 //매크로 안에서 어떤 항목 앞에 #를 붙이면 무지성(무조건)으로 문자열로 변환함
 #define NAME(x) #x
+#define PURE = 0;
+class NameInterface {
+public :
+	//virtual const char* Getname() const = 0;
+	virtual const char* GetName() const PURE;
 
-class Entity {
+};
+
+
+class Entity : public NameInterface{
 public:
 	//const char* GetName() const { return "Entity"; }
-	 virtual const char* GetName() const { return NAME(Entity); }
+	virtual const char* GetName() const override{ return NAME(Entity); }
 
 private:
 
@@ -14,7 +22,7 @@ private:
 };
 
 
-class Player : public Entity {
+class Player : public NameInterface {
 public:
 	Player(const char* name) {
 		//내부의 name 설정 
@@ -33,7 +41,7 @@ public:
 		}
 	}
 
-	virtual const char* GetName() const override { return name; }
+	virtual const char* GetName() const override{ return name; }
 private:
 	char* name = nullptr;
 };
@@ -44,16 +52,15 @@ int main() {
 
 	Entity* entity = new Entity();
 	std::cout << entity->GetName() << "\n";
-	entities[0] = entity;
+	//entities[0] = entity;
 	
 	//Player* player = new Player(("hoo"));
-	Entity* player = new Player("hoo");
+	Player* player = new Player("hoo");
 	std::cout << player->GetName() << "\n";
-	entities[1] = player; // 자동으로 업캐스팅
+	//entities[1] = player; // 자동으로 업캐스팅
 
 
-
-
+	//NameInterface* NI = new NameInterface();
 
 
 	delete player;
