@@ -22,7 +22,7 @@ private:
 };
 
 
-class Player : public NameInterface {
+class Player :  public NameInterface {
 public:
 	Player(const char* name) {
 		//내부의 name 설정 
