@@ -271,6 +271,48 @@ void ClassTest() {
 	Jang2.ShowData();
 }
 
+
+class Point {
+public:
+	Point(int px, int py) {
+		x = px;
+		y = py;
+	}
+	~Point() {
+
+	}
+	virtual void ShowData() {
+		std::cout << "중심 좌표 : " << x << ", " << y << "\n";
+	}
+private :
+	int x;
+	int y;
+};
+
+class Circle2 : public Point {
+public:
+	Circle2(int x, int y, float r) : Point(x, y) {
+		this->r = r;
+	}
+	~Circle2() {
+
+	}
+	void ShowData() override {
+		Point::ShowData();
+		std::cout << "반지름 : " << r << "\n";
+		std::cout << "원의 넓이 : " << r * r * 3.14f << "\n";
+	}
+
+private:
+	float r;
+};
+
+
+void Relationship() {
+	Circle2 circle(3, 5, 2.5f);
+	circle.ShowData();
+}
+
 int main()
 {
 	//Problem1();
@@ -280,7 +322,9 @@ int main()
 	
 	//SettingData(3);
 
-	ClassTest();
+	//ClassTest();
+
+	Relationship();
 
 	std::cin.get();
 }
