@@ -2,21 +2,6 @@
 #include "Account.h"
 #include "Bank.h"
 
-class Account;
-
-class CreditAccount : public Account {
-private :
-	int creditmoney;
-};
-
-class DonationAcctoun : public Account {
-private:
-	int donatiomoney;
-};
-
-
-
-
 void Run() {
 	bool ing = true;
 	char choice;
