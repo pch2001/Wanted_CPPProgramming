@@ -208,6 +208,69 @@ void Problem4() {
 	jang.ShowData();
 }
 
+//클래스 상속 연습 문제
+class Person {
+public:
+	Person(int age, const char* name) {
+		this->age = age;
+		int strlength = strlen(name) + 1;
+		this->name = new char[strlength];
+		strcpy_s(this->name, strlength, name);
+	}
+	Person(const Person& other) {
+		this->age = other.age;
+		int strlength = strlen(other.name)+1;
+		this->name = new char[strlength];
+		strcpy_s(this->name, strlength, other.name);
+	}
+
+	virtual ~Person() {
+		delete[] name;
+		name = nullptr;
+	}
+	virtual void ShowData() {
+		std::cout << "이름 : " << name << "\n";
+		std::cout << "나이 : " << age << "\n";
+	}
+private :
+	int age;
+	char* name;
+};
+
+
+
+class Student : public Person{
+public :
+	Student(int age, const char* name, const char* job): Person(age, name){
+		int strlength = strlen(job) + 1;
+		this->major = new char[strlength];
+		strcpy_s(this->major, strlength, job);
+	}
+	Student(const Student& other) : Person(other){
+		int strlength = (int)strlen(other.major) + 1;
+		this->major = new char[strlength];
+		strcpy_s(this->major, strlength, other.major);
+	}
+	virtual ~Student() {
+		delete major;
+		major = nullptr;
+	}
+	void ShowData() override {
+		Person::ShowData();
+		std::cout << "전공 : " << major << "\n";
+	}
+private:
+	char* major;
+};
+
+void ClassTest() {
+	Student Jang1 = Student(20, "Jang Se Yun", "Computer Science");
+	Jang1.ShowData();
+
+	Student Jang2 = Jang1;
+	Jang2.ShowData();
+}
+
 int main()
 {
 	//Problem1();
@@ -215,7 +278,9 @@ int main()
 	//Problem3();
 	//Problem4();
 	
-	SettingData(3);
+	//SettingData(3);
+
+	ClassTest();
 
 	std::cin.get();
 }
