@@ -1,5 +1,26 @@
 #pragma once
 
+
+enum class VariableType
+{
+	Unkown,
+	Int,
+	Float,
+	Enum,
+	String
+};
+
+template<typename T, VariableType Type>
+class Variable
+{
+public:
+private:
+	char* name = nullptr;
+	VariableType type = Type;
+	void* data = nullptr;
+
+};
+
 class Player
 {
 public:
