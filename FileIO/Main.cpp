@@ -1,7 +1,33 @@
 #include <iostream>
+#include "Player.h"
+
 
 int main() 
 {
+	//객체를 파일에 쓰기(파일 직렬화)
+	//Player player(3, 200, 100.0f);	
+	//player.Serialize("Player.txt");
+
+	Player player;
+	player.Deserialize("Player.txt");
+
+	//문자열 입출력
+	int score = 100;
+	float pi = 3.141592f;
+
+
+	//문자열 입출력
+	char formatString[256] = {};
+	sprintf_s(formatString, 256, "score = %d pi=%f", score, pi);
+
+	int intValue = 0;
+	float floatValue = 0.0f;
+	sscanf_s(formatString, "score = %d pit = %f", &intValue, &floatValue);
+
+
+
+
+
 	FILE* file = nullptr;
 	fopen_s(&file, "Test.txt", "rt");
 
@@ -24,6 +50,7 @@ int main()
 	// 읽은 데이터를 저장하기 위한 공간(버퍼) 필요
 	char buffer[1024] = { };
 	size_t readSize = fread(buffer, sizeof(char), 1024, file);
+
 	std::cout << "readSize " << readSize << "\n";
 	std::cout << buffer;
 	//파일 쓰기
