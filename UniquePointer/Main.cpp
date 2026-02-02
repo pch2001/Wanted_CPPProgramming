@@ -17,13 +17,15 @@ public :
 
 void Function(std::unique_ptr<Player> player)
 {
-	std::cout << "Player 받은\n";
-}
+	std::cout << "Player 받음\n";
+}	//함수를 호출하면서 생성하는 부분에만 가능하다. 	Function(std::make_unique<Player>());
+
+
 
 void Function2(std::unique_ptr<Player>& player)
 {
-	std::cout << "Player 받은\n";
-}
+	std::cout << "Player 받음\n";
+}	//참조로 받을경우 가능하다.
 
 int main()
 {
@@ -37,7 +39,6 @@ int main()
 	Function2(player);
 
 
-	//함수를 호출하면서 생성하는 부분에만 가능하다.
 
 
 	std::cin.get();
