@@ -14,10 +14,12 @@ public :
 	
 	T& operator[](size_t index)
 	{
+
 		//어써트 (꼭 검증이 필요한 구문에 활용)
 		//디버그 모드에서만 동작
 		//assert(false);
 		//ssert(index < 0 || index >= size);
+		
 		// 인덱스 범위 확인
 		if (index < 0 || index >= size)
 		{
