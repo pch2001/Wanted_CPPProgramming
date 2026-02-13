@@ -88,6 +88,7 @@ private :
 };
 
 
+//========================================================================================
 
 // 자동으로 크기가 늘어나는 배열 (List/Vector).
 template<typename T>
@@ -153,7 +154,8 @@ public:
 	T& operator[](int index)
 	{
 		// index 범위 확인.
-		assert(index < 0 || index >= size);
+		//assert(index < 0 || index >= size);
+		assert(index >= 0 && index< size);
 		return data[index];
 	}
 
