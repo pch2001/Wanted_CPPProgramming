@@ -12,27 +12,22 @@ class Node
 
 	//노드의 생성은 LinkedList에서만 가능하도록 private으로 지정.
 
-private :
-	Node();
-	Node(T data);
+private:
+	Node() :data(), next(nullptr)
+	{
+	}
+	Node(T data) : data(data), next(nullptr)
+	{
+
+	}
 
 
 private :
 	//데이터 필드
 	T data;
 
-	//링크 필드.
+	//링크 필드.                                                                    
 	Node* next = nullptr;
 
 };
 
-template<typename T>
-inline Node<T>::Node() :data(), next(nullptr)
-{
-}
-
-template<typename T>
-inline Node<T>::Node(T data) : data(data), next(nullptr)
-{
-
-}
