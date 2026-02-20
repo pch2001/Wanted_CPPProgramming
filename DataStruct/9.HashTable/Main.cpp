@@ -23,17 +23,20 @@ int main()
 	table.Add("Hoo", "010-74347");
 	table.Add("HER", "010-25346");
 
-	table.Print();
+	//table.Print();
 
 	//검색
 	table.Print();
 	Pair<std::string, std::string> outvalue;
 
-	if (table.Find("SEH", outvalue.key))
+	if (table.Find("SHE", outvalue))
 		std::cout << "검색 성공. Key " << outvalue.key << " " << outvalue.value << "\n";
+	
+	std::cout << "\n";
 
 	table.Delete("MEE");
-	table.Delete("HER")
+	table.Delete("HER");
 
+	table.Print();
 	std::cin.get();
 }
