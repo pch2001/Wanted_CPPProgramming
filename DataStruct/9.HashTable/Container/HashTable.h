@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+
 //해시테이블 클래스
 class HashTable
 {
@@ -14,6 +15,21 @@ private :
 public :
 	HashTable();
 	~HashTable();
+
+	//키-값 조합으로 저장할 수 있도록
+	void Add(const std::string& key, const std::string* value);
+
+	//삭제- 키를 활용해 K-value 조합 데이터 삭제
+	void Delete(const std::string& key);
+
+	//검색 함수
+	bool Find(const std::string& key, Entry& outEntry);
+
+	//출력 함수
+	void Print();
+
+	//Getter.
+	bool IsEmpty() const;
 
 private :
 	//내부 저장소 크기.
