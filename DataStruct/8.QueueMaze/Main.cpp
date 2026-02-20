@@ -144,20 +144,20 @@ int main()
 	PrintMap(start, 0);
 
 	//큐 생성
-	Queue<Location2D, mazeSize> stack;
+	Queue<Location2D, mazeSize> queue;
 
 	//시작 위치 스택에 추가
-	stack.Enqueue(start);
+	queue.Enqueue(start);
 
 	//길찾기(DFS)
 	//큐가 비어있지 않으면 = 방문할 위치가 남아 있으면.
 	//방문 및 길찾기 진행
 
-	while (!stack.IsEmpty())
+	while (!queue.IsEmpty())
 	{
 		// 방문할 위치 꺼내기
 		Location2D current;
-		if (!stack.Dequeue(current))
+		if (!queue.Dequeue(current))
 		{
 			std::cout << "Pop 실패\n";
 			break;
@@ -181,19 +181,19 @@ int main()
 
 		if (IsValidLocation(Location2D(current.row - 1, current.col)))
 		{
-			stack.Enqueue(Location2D(current.row - 1, current.col));
+			queue.Enqueue(Location2D(current.row - 1, current.col));
 		}
 		if (IsValidLocation(Location2D(current.row + 1, current.col)))
 		{
-			stack.Enqueue(Location2D(current.row + 1, current.col));
+			queue.Enqueue(Location2D(current.row + 1, current.col));
 		}
 		if (IsValidLocation(Location2D(current.row , current.col-1)))
 		{
-			stack.Enqueue(Location2D(current.row , current.col-1));
+			queue.Enqueue(Location2D(current.row , current.col-1));
 		}
 		if (IsValidLocation(Location2D(current.row , current.col+1)))
 		{
-			stack.Enqueue(Location2D(current.row , current.col+1));
+			queue.Enqueue(Location2D(current.row , current.col+1));
 		}
 	}
 
