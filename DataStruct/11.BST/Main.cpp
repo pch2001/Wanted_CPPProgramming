@@ -7,10 +7,19 @@ int main()
 	BinarySearchTree<int> tree;
 
 	//ª¿‘
-	tree.InsertNode(10);
 	tree.InsertNode(20);
+	tree.InsertNode(10);
 	tree.InsertNode(5);
 	tree.InsertNode(30);
+	tree.InsertNode(25);
+	tree.InsertNode(35);
+	tree.InsertNode(8);
+	tree.InsertNode(1);
+	tree.InsertNode(3);
+
+	//ªË¡¶
+	tree.DeleteNode(25);
+
 
 	std::cin.get();
 
