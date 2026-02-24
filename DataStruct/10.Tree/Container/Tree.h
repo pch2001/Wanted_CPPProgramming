@@ -53,7 +53,7 @@ public :
 	//삭제 함수.
 	bool Remove(const T& data)
 	{
-		//Todo : 재귀 함수 구현 후 호출
+		//재귀 함수 구현 후 호출
 		return RemoveRecursive(data, root);
 	}
 

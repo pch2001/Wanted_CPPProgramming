@@ -1,12 +1,12 @@
-#include "Container/BinarySearchTree.h"
+ï»¿#include "Container/BinarySearchTree.h"
 #include <iostream>
 
 int main()
 {
-	//Á¤¼öÇü ÀÌÁø Å½»ö Æ®¸® °´Ã¼ »ı¼º
+	//ì •ìˆ˜í˜• ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ ê°ì²´ ìƒì„±
 	BinarySearchTree<int> tree;
 
-	//»ğÀÔ
+	//ì‚½ì…
 	tree.InsertNode(20);
 	tree.InsertNode(10);
 	tree.InsertNode(5);
@@ -14,12 +14,18 @@ int main()
 	tree.InsertNode(25);
 	tree.InsertNode(35);
 	tree.InsertNode(8);
-	tree.InsertNode(1);
-	tree.InsertNode(3);
 
-	//»èÁ¦
+	//ì‚­ì œ
 	tree.DeleteNode(25);
+	tree.DeleteNode(10);
+	tree.DeleteNode(8);
 
+	//ì „ìœ„ ìˆœíšŒ
+	tree.PreorderTraverse();
+
+	tree.InorderTraverse();
+
+	tree.PostorderTraverse();
 
 	std::cin.get();
 

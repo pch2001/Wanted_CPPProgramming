@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Node.h"
 
-//ÀÌÁø Å½»ö Æ®¸®
+//ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬
 template <typename T>
 class BinarySearchTree
 {
@@ -14,101 +14,194 @@ public:
 
 	~BinarySearchTree()
 	{
-		//Æ®¸® Á¦°Å ÇÔ¼ö ±¸Çö ÈÄ È£Ãâ
+		//íŠ¸ë¦¬ ì œê±° í•¨ìˆ˜ êµ¬í˜„ í›„ í˜¸ì¶œ
 		Destroy();
 	}
 
 
-	//»ğÀÔ
-	//±ÔÄ¢ 
-	// 0. Áßº¹µÈ °ª Çã¿ë ¾ÈÇÔ
-	// 1. ·çÆ® ³ëµåºÎÅÍ ºñ±³ ½ÃÀÛ
-	// 1-1. ·çÆ®°¡ nullÀÌ¸é ·çÆ® »ı¼º
-	// 2. Ãß°¡ÇÒ °ªÀÌ ÀÛÀ¸¸é ¿ŞÂÊ¿¡ ÀúÀå
-	// 3. Ãß°¡ÇÒ °ªÀÌ Å©¸é ¿À¸¥ÂÊ¿¡ ÀúÀå
+	//ì‚½ì…
+	//ê·œì¹™ 
+	// 0. ì¤‘ë³µëœ ê°’ í—ˆìš© ì•ˆí•¨
+	// 1. ë£¨íŠ¸ ë…¸ë“œë¶€í„° ë¹„êµ ì‹œì‘
+	// 1-1. ë£¨íŠ¸ê°€ nullì´ë©´ ë£¨íŠ¸ ìƒì„±
+	// 2. ì¶”ê°€í•  ê°’ì´ ì‘ìœ¼ë©´ ì™¼ìª½ì— ì €ì¥
+	// 3. ì¶”ê°€í•  ê°’ì´ í¬ë©´ ì˜¤ë¥¸ìª½ì— ì €ì¥
 	bool InsertNode(const T& newData)
 	{
-		//Áßº¹ ¿©ºÎ È®ÀÎ
+		//ì¤‘ë³µ ì—¬ë¶€ í™•ì¸
 		Node<T>* outNode = nullptr;
 		if (SearchNode(newData, outNode))
 		{
-			//Áßº¹µÈ °ªÀÌ ÀÖÀ¸¸é »ğÀÔ ½ÇÆĞ
+			//ì¤‘ë³µëœ ê°’ì´ ìˆìœ¼ë©´ ì‚½ì… ì‹¤íŒ¨
 			return false;
 		}
 		
-		//·çÆ®°¡ ¾øÀ¸¸é ·çÆ® ³ëµå »ı¼º
+		//ë£¨íŠ¸ê°€ ì—†ìœ¼ë©´ ë£¨íŠ¸ ë…¸ë“œ ìƒì„±
 		if (!root)
 		{
 			root = new Node<T>(newData);
 			return true;
 		}
-		//2/3À» Ã³¸®ÇÏ±â À§ÇØ Àç±Í ÇÔ¼ö È£Ãâ.
+		//2, 3ì„ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ ì¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ.
 		root = InsertNodeRecursive(root, nullptr, newData);
 		return true;
 	 }
 
-	//»èÁ¦
+	//ì‚­ì œ
 	bool DeleteNode(const T& deleteData)
 	{
-		//Àç±Í »èÁ¦ ÇÔ¼ö ±¸Çö ÈÄ È£Ãâ.
+		//ì¬ê·€ ì‚­ì œ í•¨ìˆ˜ êµ¬í˜„ í›„ í˜¸ì¶œ.
 		return DeleteNodeRecursive(root, deleteData, root);
 	}
 
-	//°Ë»ö
+	//ê²€ìƒ‰
 	bool SearchNode(const T& data, Node<T>*& outNode)
 	{
-		// °Ë»ö Àç±ÍÇÔ¼ö ±¸Çö ÈÄ È£Ãâ.
+		// ê²€ìƒ‰ ì¬ê·€í•¨ìˆ˜ êµ¬í˜„ í›„ í˜¸ì¶œ.
 		return SearchNodeRecursive(root, data, outNode);		   
 	}
 
-	//¼øÈ¸
+	//ìˆœíšŒ
+	//ì „ìœ„ ìˆœíšŒ
+	void PreorderTraverse(int depth = 0)
+	{
+		std::cout << "=========== ì „ìœ„ ìˆœíšŒ ì‹œì‘ =========== \n";
+
+		// ìˆœíšŒ ì¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ.
+		PreorderTraverseRecursive(root, depth);
+
+		std::cout << "=========== ì „ìœ„ ìˆœíšŒ ì¢…ë£Œ =========== \n";
+	}
+
+	void InorderTraverse(int depth = 0)
+	{
+		std::cout << "=========== ì¤‘ìœ„ ìˆœíšŒ ì‹œì‘ =========== \n";
+
+		// ìˆœíšŒ ì¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ.
+		InorderTraverseRecursive(root, depth);
+
+		std::cout << "=========== ì¤‘ìœ„ ìˆœíšŒ ì¢…ë£Œ =========== \n";
+	}
+
+	void PostorderTraverse(int depth = 0)
+	{
+		std::cout << "=========== í›„ìœ„ ìˆœíšŒ ì‹œì‘ =========== \n";
+
+		// ìˆœíšŒ ì¬ê·€ í•¨ìˆ˜ í˜¸ì¶œ.
+		PostorderTraverseRecursive(root, depth);
+
+		std::cout << "=========== í›„ìœ„ ìˆœíšŒ ì¢…ë£Œ =========== \n";
+	}
 
 private : 
-	//Àç±Í ÇÔ¼ö
+	//ì¬ê·€ í•¨ìˆ˜
 
-	//»ğÀÔ Àç±Í ÇÔ¼ö
+	//ì „ìœ„ ìˆœíšŒ ì¬ê·€ í•¨ìˆ˜
+	void PreorderTraverseRecursive(Node<T>* node, int depth = 0)
+	{
+		if (!node) return;
+
+		//ëìŠ¤ ì¶œë ¥.
+		for (int ix = 0; ix < depth; ++ix)
+		{
+			std::cout << " ";
+		}
+
+		//ë¶€ëª¨ ë…¸ë“œ ì²˜ë¦¬
+		std::cout << node->data << "\n";
+
+		//ì™¼ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì²˜ë¦¬
+		
+		PreorderTraverseRecursive(node->left, depth + 1);
+
+		//ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì²˜ë¦¬
+		PreorderTraverseRecursive(node->right, depth + 1);
+	}
+
+
+	void InorderTraverseRecursive(Node<T>* node, int depth = 0)
+	{
+		if (!node) return;
+
+		//ì™¼ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì²˜ë¦¬
+		InorderTraverseRecursive(node->left, depth + 1);
+
+		//ëìŠ¤ ì¶œë ¥.
+		for (int ix = 0; ix < depth; ++ix)
+		{
+			std::cout << " ";
+		}
+
+		//ë¶€ëª¨ ë…¸ë“œ ì²˜ë¦¬
+		std::cout << node->data << "\n";
+
+		//ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì²˜ë¦¬
+		InorderTraverseRecursive(node->right, depth + 1);
+	}
+
+	void PostorderTraverseRecursive(Node<T>* node, int depth = 0)
+	{
+		if (!node) return;
+
+
+
+		//ì™¼ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì²˜ë¦¬
+		PostorderTraverseRecursive(node->left, depth + 1);
+
+		//ëìŠ¤ ì¶œë ¥.
+		for (int ix = 0; ix < depth; ++ix)
+		{
+			std::cout << " ";
+		}
+		//ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì²˜ë¦¬
+		PostorderTraverseRecursive(node->right, depth + 1);
+		//ë¶€ëª¨ ë…¸ë“œ ì²˜ë¦¬
+		std::cout << node->data << "\n";
+	}
+
+	//ì‚½ì… ì¬ê·€ í•¨ìˆ˜
 	Node<T>* InsertNodeRecursive(Node<T>* node, Node<T>* parent, const T& newData)
 	{
-		// node°¡ nullÀÌ¸é ³ëµå »ı¼º ÈÄ ¹İÈ¯
+		// nodeê°€ nullì´ë©´ ë…¸ë“œ ìƒì„± í›„ ë°˜í™˜
 		if (!node)
 		{
 			return new Node<T>(newData, parent);
 		}
 
-		//Ãß°¡ÇÏ·Á´Â °ªÀÌ ºñ±³ ³ëµåº¸´Ù ÀÛÀ¸¸é
-		//¿ŞÂÊ ÇÏÀ§ Æ®¸®·Î Å½»ö ÁøÇà
+		//ì¶”ê°€í•˜ë ¤ëŠ” ê°’ì´ ë¹„êµ ë…¸ë“œë³´ë‹¤ ì‘ìœ¼ë©´
+		//ì™¼ìª½ í•˜ìœ„ íŠ¸ë¦¬ë¡œ íƒìƒ‰ ì§„í–‰
 		if (node->data > newData)
 		{
 			node->left = InsertNodeRecursive(node->left, node, newData);
 		}
-		//Ãß°¡ÇÏ·Á´Â °ªÀÌ ºñ±³ ³ëµåº¸´Ù Å©¸é
-		//¿À¸¥ÂÊ ÇÏÀ§ Æ®¸®·Î Å½»ö ÁøÇà
+		//ì¶”ê°€í•˜ë ¤ëŠ” ê°’ì´ ë¹„êµ ë…¸ë“œë³´ë‹¤ í¬ë©´
+		//ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ë¡œ íƒìƒ‰ ì§„í–‰
 		else
 		{
 			node->right = InsertNodeRecursive(node->right, node, newData);
 		}
 
-		//Æ®¸® ±¸Á¶ À¯Áö¸¦ À§ÇØ ¹İÈ¯
+		//íŠ¸ë¦¬ êµ¬ì¡° ìœ ì§€ë¥¼ ìœ„í•´ ë°˜í™˜
 		return node;
 	}
 
-	//°Ë»ö Àç±Í ÇÔ¼ö
+	//ê²€ìƒ‰ ì¬ê·€ í•¨ìˆ˜
 	bool SearchNodeRecursive(Node<T>* node,const T& data ,Node<T>*& outNode)
 	{
-		//°Ë»ö ½ÇÆĞ
+		//ê²€ìƒ‰ ì‹¤íŒ¨
 		if (!node)
 		{
 			outNode = nullptr;
 			return false;
 		}
 
-		//Ã£¾Ò´ÂÁö È®ÀÎ.
+		//ì°¾ì•˜ëŠ”ì§€ í™•ì¸.
 		if (node->data == data)
 		{
 			outNode = node;
 			return true;
 		}
-		// ÀÛÀº °æ¿ì ¿ŞÂÊÀ¸·Î
+		// ì‘ì€ ê²½ìš° ì™¼ìª½ìœ¼ë¡œ
 		if (node->data > data)
 		{
 			return SearchNodeRecursive(node->left, data, outNode);
@@ -119,31 +212,31 @@ private :
 		}
 	}
 
-	//»èÁ¦ Àç±Í ÇÔ¼ö
+	//ì‚­ì œ ì¬ê·€ í•¨ìˆ˜
 	bool DeleteNodeRecursive(Node<T>* node, const T& deleteData, Node<T>*& outNode)
 	{
-		//³ëµå°¡ nullÀÎ °æ¿ì´Â »èÁ¦ÇÒ ³ëµå¸¦ Ã£Áö ¸øÇÑ °æ¿ì
+		//ë…¸ë“œê°€ nullì¸ ê²½ìš°ëŠ” ì‚­ì œí•  ë…¸ë“œë¥¼ ì°¾ì§€ ëª»í•œ ê²½ìš°
 		if (!node)
 		{
 			outNode = nullptr;
 			return false;
 		}
 
-		// ºñ±³ °ªÀÌ ÀÛÀº °æ¿ì ¿ŞÂÊÀ¸·Î 
+		// ë¹„êµ ê°’ì´ ì‘ì€ ê²½ìš° ì™¼ìª½ìœ¼ë¡œ 
 		if (node->data > deleteData)
 		{
 			return DeleteNodeRecursive(node->left, deleteData, node->left);
 		}
-		// ºñ±³ °ªÀÌ Å« °æ¿ì ¿À¸¥ÂÊÀ¸·Î
+		// ë¹„êµ ê°’ì´ í° ê²½ìš° ì˜¤ë¥¸ìª½ìœ¼ë¡œ
 		else if (node->data < deleteData)
 		{
 			return DeleteNodeRecursive(node->right, deleteData, node->right);
 		}
-		// »èÁ¦ ³ëµå Ã£Àº °æ¿ì Ã³¸®
+		// ì‚­ì œ ë…¸ë“œ ì°¾ì€ ê²½ìš° ì²˜ë¦¬
 		else
 		{
-			//°æ¿ìÀÇ ¼ö1 - ÀÚ½ÄÀÌ ¾ø´Â °æ¿ì
-			//(left, right ¸ğµÎ null)
+			//ê²½ìš°ì˜ ìˆ˜1 - ìì‹ì´ ì—†ëŠ” ê²½ìš°
+			//(left, right ëª¨ë‘ null)
 			if (!node->left && !node->right)
 			{
 				delete node;
@@ -151,120 +244,120 @@ private :
 				return true;
 			}
 
-			// °æ¿ìÀÇ ¼ö 2 - ÀÚ½Ä ³ëµå µÑ ´Ù ÀÖ´Â °æ¿ì
+			// ê²½ìš°ì˜ ìˆ˜ 2 - ìì‹ ë…¸ë“œ ë‘˜ ë‹¤ ìˆëŠ” ê²½ìš°
 			if (node->left && node->right)
 			{
-				// ¿©±â¿¡¼­´Â 2°¡Áö ¹æ¹ıÀÌ °¡´É
-				// 1. ¿ŞÂÊ ÇÏÀ§ Æ®¸®¿¡¼­ °¡Àå Å« °ªÀÇ ³ëµå¸¦ ´ëÃ¼
-				// 2. ¿À¸¥ÂÊ ÇÏÀ§ Æ®¸®¿¡¼­ °¡Àå ÀÛÀº °ªÀÇ ³ëµå¸¦ ´ëÃ¼. -> ¿©±â¼­´Â ¿À¸¥ÂÊ ÇÏÀ§ ³ëµå·Î ±¸Çö
-				// ºÎºĞ ÇÔ¼ö ±¸Çö
+				// ì—¬ê¸°ì—ì„œëŠ” 2ê°€ì§€ ë°©ë²•ì´ ê°€ëŠ¥
+				// 1. ì™¼ìª½ í•˜ìœ„ íŠ¸ë¦¬ì—ì„œ ê°€ì¥ í° ê°’ì˜ ë…¸ë“œë¥¼ ëŒ€ì²´
+				// 2. ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ì—ì„œ ê°€ì¥ ì‘ì€ ê°’ì˜ ë…¸ë“œë¥¼ ëŒ€ì²´. -> ì—¬ê¸°ì„œëŠ” ì˜¤ë¥¸ìª½ í•˜ìœ„ ë…¸ë“œë¡œ êµ¬í˜„
+				// ë¶€ë¶„ í•¨ìˆ˜ êµ¬í˜„
 				
-				// ÇÏÀ§ ³ëµå¿¡¼­ ÃÖ¼Ò°ª Ã£´Â ÇÔ¼ö È£Ãâ
+				// í•˜ìœ„ ë…¸ë“œì—ì„œ ìµœì†Œê°’ ì°¾ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
 				node->data = SearchMinValue(node->right)->data;
 
-				//¿À¸¥ÂÊ ÇÏÀ§ Æ®¸®¿¡¼­ °¡Àå ÀÛÀº °ªÀÇ ³ëµå¸¦ »èÁ¦ ¹× Á¤¸®
+				//ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ì—ì„œ ê°€ì¥ ì‘ì€ ê°’ì˜ ë…¸ë“œë¥¼ ì‚­ì œ ë° ì •ë¦¬
 				DeleteNodeRecursive(node->right, node->data, node->right);
 				return true;
 			}
-			// °æ¿ìÀÇ ¼ö 3 - µÑ Áß¿¡ ÇÏ³ª¸¸ ÀÖ´Â °æ¿ì
+			// ê²½ìš°ì˜ ìˆ˜ 3 - ë‘˜ ì¤‘ì— í•˜ë‚˜ë§Œ ìˆëŠ” ê²½ìš°
 			else
 			{
-				//¿ŞÂÊ ÀÚ¼ÕÀÌ null -> ¿À¸¥ÂÊ ÀÚ¼Õ¸¸ ÀÖ´Â °æ¿ì
+				//ì™¼ìª½ ìì†ì´ null -> ì˜¤ë¥¸ìª½ ìì†ë§Œ ìˆëŠ” ê²½ìš°
 				if (!node->left)
 				{
-					//¿À¸¥ÂÊ ÀÚ¼Õ Á¤º¸¸¦ ÀÓ½Ã ÀúÀå
+					//ì˜¤ë¥¸ìª½ ìì† ì •ë³´ë¥¼ ì„ì‹œ ì €ì¥
 					Node<T>* right = node->right;
 
-					//¿À¸¥ÂÊ ÀÚ¼ÕÀÇ ºÎ¸ğ¸¦ »èÁ¦ÇÒ ³ëµåÀÇ ºÎ¸ğ·Î ¼³Á¤.
+					//ì˜¤ë¥¸ìª½ ìì†ì˜ ë¶€ëª¨ë¥¼ ì‚­ì œí•  ë…¸ë“œì˜ ë¶€ëª¨ë¡œ ì„¤ì •.
 					right->parent = node->parent;
 
-					//³ëµå Á¦°Å
+					//ë…¸ë“œ ì œê±°
 					delete node;
 
-					// ¿À¸¥ÂÊ ÀÚ¼Õ Á¤º¸ ¼³Á¤
+					// ì˜¤ë¥¸ìª½ ìì† ì •ë³´ ì„¤ì •
 					outNode = right;
 					return true;
 				}
-				//¿ŞÁ· ÀÚ¼ÕÀÌ ÀÖ´Â °æ¿ì
+				//ì™¼ì¡± ìì†ì´ ìˆëŠ” ê²½ìš°
 				else if (!node->right)
 				{
-					//¿ŞÂÊ ÀÚ¼Õ Á¤º¸¸¦ ÀÓ½Ã ÀúÀå
+					//ì™¼ìª½ ìì† ì •ë³´ë¥¼ ì„ì‹œ ì €ì¥
 					Node<T>* left = node->left;
 
-					//¿ŞÂÊ ÀÚ¼ÕÀÇ ºÎ¸ğ¸¦ »èÁ¦ÇÒ ³ëµåÀÇ ºÎ¸ğ·Î ¼³Á¤.
+					//ì™¼ìª½ ìì†ì˜ ë¶€ëª¨ë¥¼ ì‚­ì œí•  ë…¸ë“œì˜ ë¶€ëª¨ë¡œ ì„¤ì •.
 					left->parent = node->parent;
 
-					//³ëµå Á¦°Å
+					//ë…¸ë“œ ì œê±°
 					delete node;
 
-					// ¿ŞÂÊ ÀÚ¼Õ Á¤º¸ ¼³Á¤
+					// ì™¼ìª½ ìì† ì •ë³´ ì„¤ì •
 					outNode = left;
 					return true;
 				}
 			}
 		}
 
-		//¿À·ù
+		//ì˜¤ë¥˜
 		outNode = nullptr;
 		return false;
 	}
 
-	//ÃÖ¼Ò°ª °Ë»ö ÇÔ¼ö
-	// node: °Ë»öÀ» ½ÃÀÛÇÏ´Â ³ëµå
+	//ìµœì†Œê°’ ê²€ìƒ‰ í•¨ìˆ˜
+	// node: ê²€ìƒ‰ì„ ì‹œì‘í•˜ëŠ” ë…¸ë“œ
 	
 	Node<T>* SearchMinValue(Node<T>* node)
 	{
-		//°Ë»ö ½ÃÀÛ
+		//ê²€ìƒ‰ ì‹œì‘
 		while (node->left)
 		{
-			//¿ŞÂÊ ÇÏÀ§ ³ëµå·Î ÀÌµ¿
+			//ì™¼ìª½ í•˜ìœ„ ë…¸ë“œë¡œ ì´ë™
 			node = node->left;
 		}
-		//ÃÖ¼Ò °ªÀ» °¡Áø ³ëµå ¹İÈ¯
+		//ìµœì†Œ ê°’ì„ ê°€ì§„ ë…¸ë“œ ë°˜í™˜
 		return node;
 	}
 	
-	//ÆÄ±« ÇÔ¼ö
+	//íŒŒê´´ í•¨ìˆ˜
 	void Destroy()
 	{
-		//ºó Æ®¸®(root°¡ null)ÀÎ °æ¿ì¿¡´Â ÇÔ¼ö Á¾·á
+		//ë¹ˆ íŠ¸ë¦¬(rootê°€ null)ì¸ ê²½ìš°ì—ëŠ” í•¨ìˆ˜ ì¢…ë£Œ
 		if (!root)
 		{
 			return;
 		}
-		//·çÆ® ³ëµåºÎÅÍ Á¦°Å
+		//ë£¨íŠ¸ ë…¸ë“œë¶€í„° ì œê±°
 		DestroyRecursive(root);
 	}
 
-	//ÆÄ±« Àç±Í ÇÔ¼ö
+	//íŒŒê´´ ì¬ê·€ í•¨ìˆ˜
 	void DestroyRecursive(Node<T>* node)
 	{
-		// Á¾·á Á¶°Ç
+		// ì¢…ë£Œ ì¡°ê±´
 		if (!node)
 		{
 			return;
 		}
 
-		//ÀÚ¼ÕÀÌ ¾ø´Â °æ¿ì Ã³¸®
+		//ìì†ì´ ì—†ëŠ” ê²½ìš° ì²˜ë¦¬
 		if (!node->left && !node->right)
 		{
 			delete node;
 			return;
 		}
 
-		//¿ŞÂÊ ÇÏÀ§ Æ®¸® »èÁ¦.
+		//ì™¼ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì‚­ì œ.
 		DestroyRecursive(node->left);
 
-		//¿À¸¥ÂÊ ÇÏÀ§ Æ®¸® »èÁ¦
+		//ì˜¤ë¥¸ìª½ í•˜ìœ„ íŠ¸ë¦¬ ì‚­ì œ
 		DestroyRecursive(node->right);
 
-		//³ëµå Á¤¸®
+		//ë…¸ë“œ ì •ë¦¬
 		delete node;
 
 	}
 	
 private :
-	//·çÆ® ³ëµå
+	//ë£¨íŠ¸ ë…¸ë“œ
 	Node<T>* root = nullptr;
 
 
