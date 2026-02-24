@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36908.2 d17.14
+VisualStudioVersion = 17.14.36908.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BynarySearch", "BynarySearch\BynarySearch.vcxproj", "{DF527DEA-9D42-4D90-8239-8823F06916AE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Random", "Random\Random.vcxproj", "{CDD0806E-1A4B-4782-9481-3392B8F9A02E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BubbleSort", "BubbleSort\BubbleSort.vcxproj", "{0163BBE7-8F13-48D7-932D-28C907E1DAD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CDD0806E-1A4B-4782-9481-3392B8F9A02E}.Debug|x64.Build.0 = Debug|x64
 		{CDD0806E-1A4B-4782-9481-3392B8F9A02E}.Release|x64.ActiveCfg = Release|x64
 		{CDD0806E-1A4B-4782-9481-3392B8F9A02E}.Release|x64.Build.0 = Release|x64
+		{0163BBE7-8F13-48D7-932D-28C907E1DAD9}.Debug|x64.ActiveCfg = Debug|x64
+		{0163BBE7-8F13-48D7-932D-28C907E1DAD9}.Debug|x64.Build.0 = Debug|x64
+		{0163BBE7-8F13-48D7-932D-28C907E1DAD9}.Release|x64.ActiveCfg = Release|x64
+		{0163BBE7-8F13-48D7-932D-28C907E1DAD9}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
