@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <Windows.h>
 //삽입 정렬 함수
 void InsertaionSort(int* array, int length)
@@ -53,6 +54,8 @@ int main()
 	int array[] = { 5, 2, 8, 4, 1, 7, 3, 6, 9, 10, 15, 13, 14, 12, 17, 16 };
 	//배열 항목 개수 구하기
 	int length = ARRAYSIZE(array);
+
+	std::sort(array[0], array[1]);
 
 	//정렬 전 출력
 	std::cout << "정렬 전 배열";
