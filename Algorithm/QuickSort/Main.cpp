@@ -99,14 +99,14 @@ int main()
 
 	// 출력
 	// 정렬 전
-	std::cout << "정렬 전 : ";
+	std::cout << "정렬 전 : \n";
 	PrintArray(array, length);
 
-	//정렬
+	// 정렬
 	QuickSort(array, 0, length - 1);
 
 	// 정렬 후
-	std::cout << "정렬 후 : ";
+	std::cout << "정렬 후 : \n";
 	PrintArray(array, length);
 
 
