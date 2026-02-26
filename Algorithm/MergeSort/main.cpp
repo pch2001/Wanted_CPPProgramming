@@ -25,7 +25,7 @@ void Merge(int* array, int* leftArray, int leftArraylength, int* rightArray, int
 			++rightIndex;
 		}
 		// 병합된 배열의 인덱스 증가 처리
-		mergedIndex++;;
+		mergedIndex++;
 	}
 
 	// 위의 과정에서 왼쪽 배열의 남은 요소를 최종 배열에 복사
