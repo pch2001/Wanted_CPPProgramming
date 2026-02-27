@@ -53,7 +53,7 @@ public :
 private :
 	// 객체 지향 이론에서 -> 메소드(Method) - 비공개 멤버 함수
 
-	// 탐색을 완료한 후에 최적 겨올 반환하는 함수
+	// 탐색을 완료한 후에 최적 rkqt올 반환하는 함수
 	// 부모링크를 따라가면서 역추적
 	std::vector<Node*> ConstructPath(Node* goalNode);
 
