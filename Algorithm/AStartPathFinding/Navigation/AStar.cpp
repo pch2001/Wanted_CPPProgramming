@@ -25,7 +25,7 @@ AStar::~AStar()
     closedList.clear();
 }
 
-std::vector<Node*> AStar::FindPath(Node* StartNode, Node* goalNode, std::vector<std::vector<int>>& grid)
+std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, std::vector<std::vector<int>>& grid)
 {
     this->startNode = startNode;
     this->goalNode = goalNode;
@@ -151,8 +151,8 @@ std::vector<Node*> AStar::FindPath(Node* StartNode, Node* goalNode, std::vector<
                     // 비용 업데이트
                     openListNode->gCost = neighborNode->gCost;
                     openListNode->hCost = neighborNode->hCost;
-                    openListNode->hCost = neighborNode->fCost;
-                     
+                    openListNode->fCost = neighborNode->fCost;
+                     // 왜 openListNode->hCost = neighborNode->fCost; 일때 더 적게 검사하는지 확인해보기
                 }
 
                 // 임시 노드 메모리 정리
@@ -166,7 +166,7 @@ std::vector<Node*> AStar::FindPath(Node* StartNode, Node* goalNode, std::vector<
             if (grid[newY][newX] == 0)
             {
                 // 시각화를 위해 사용 안하는 값 정해서 설정
-                grid[newY][newX] = 5;
+                grid[newY][newX] = 9;
 
             }
 
@@ -405,6 +405,13 @@ void AStar::DisplayGrid(std::vector<std::vector<int>>& grid)
                 SetConsoleTextAttribute(handle, white);
                 std::cout << "0 ";
                 //continue;
+            }
+
+            if (grid[y][x] == 9)
+            {
+                SetConsoleTextAttribute(handle, red);
+                std::cout << "@ ";
+
             }
         }
         // 개행

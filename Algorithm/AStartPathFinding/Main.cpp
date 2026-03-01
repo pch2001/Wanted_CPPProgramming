@@ -19,41 +19,13 @@ std::vector<std::vector<int>> grid =
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 };
 
-// 시작 노드 및 목표 노드 검색 함수
-void FindStartAndGoalNode(std::vector<std::vector<int>> grid,
+// 시작 노드 및 목표 노드 검색 함수.
+void FindStartAndGoalNode(
+	const std::vector<std::vector<int>>& grid,
 	Node*& outStartNode,
-	Node*& outGoalNode)
-{
-	// 빈 그리드는 검색 불가
-	if (grid.empty() || grid[0].empty())
-		return;
-	for (int y = 0; y < static_cast<int>(grid.size()); ++y)
-	{
+	Node*& outGoalNode
+);
 
-		// 다 찾았으면 종료
-		if (outStartNode && outGoalNode)
-		{
-			break;
-	}
-
-		for (int x = 0; x < static_cast<int>(grid[0].size()); ++x)
-		{
-			//시작 노드
-			if (grid[y][x] == 2)
-			{
-				outStartNode = new Node(x, y);
-				continue;
-			}
-			//ㅁ 목표 노드
-			if (grid[x][y] == 3)
-			{
-				outGoalNode = new Node(x, y);
-				continue;
-			}
-
-		}
-	}
-}
 
 
 int main()
@@ -108,4 +80,49 @@ int main()
 	COORD coord = { 0,30 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 
+	std::cin.get();
+}
+
+
+
+void FindStartAndGoalNode(const std::vector<std::vector<int>>& grid,
+	Node*& outStartNode,
+	Node*& outGoalNode)
+{
+	// 빈 그리드는 검색 불가
+	if (grid.empty() || grid[0].empty())
+		return;
+
+	for (int y = 0; y < static_cast<int>(grid.size()); ++y)
+	{
+
+		// 다 찾았으면 종료
+		if (outStartNode && outGoalNode)
+		{
+			break;
+		}
+
+		for (int x = 0; x < static_cast<int>(grid[0].size()); ++x)
+		{
+			// 다 찾았으면 종료
+			if(outStartNode && outGoalNode)
+			{
+				break;
+			}
+
+			// 시작 노드
+			if (grid[y][x] == 2)
+			{
+				outStartNode = new Node(x, y);
+				continue;
+			}
+			// 목표 노드
+			if (grid[y][x] == 3)
+			{
+				outGoalNode = new Node(x, y);
+				continue;
+			}
+
+		}
+	}
 }
