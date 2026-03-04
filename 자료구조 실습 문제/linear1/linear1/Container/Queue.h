@@ -9,23 +9,18 @@ public:
 	Queue() : first(0), end(0) {}
 	Queue(T data) : first(0), end(0) { Push(data); }
 
-	bool Push(const T& data)
+	bool Push(const T& value)
 	{
-		if (IsFull())
-			return false;
+		if (IsFull()) return false;
 
-		data[end] = data;
-		++end;
+		data[end++] = value;
 		return true;
 	}
 
 	bool Pop(T& outValue)
 	{
-		if (IsEmpty())
-			return false;
-		
-		outValue = data[first];
-		first++;
+		if (IsEmpty()) return false;
+		outValue = data[first++];
 		return true;
 	}
 

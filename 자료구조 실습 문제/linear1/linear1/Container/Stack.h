@@ -15,23 +15,21 @@ public :
 		if (IsFull())
 			return false;
 
-		data[top] = value;
-		top++;
+		data[top++] = value;
 		return true;
 	}
 	bool Pop(T& outValue)
 	{
 		if (IsEmpty())
 			return false;
-		--top;
-		outValue = data[top];
+		outValue = data[--top];
 		return true;
 	}
 
 	void Print()
 	{
 		int temp = top;
-		for (int i = top; i >= 0; --i)
+		for (int i = top-1; i >= 0; --i)
 		{
 			std::cout << data[i] <<"\n";
 		}
