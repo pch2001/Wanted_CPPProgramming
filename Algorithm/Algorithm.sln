@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AStartPathFinding", "AStart
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuadTree", "QuadTree\QuadTree.vcxproj", "{4A8FB21C-A30E-4B19-8ACD-BBABCA433DF2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BFS", "BFS\BFS.vcxproj", "{B5528ED3-98F1-4139-9604-E8CF1F1B786A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -75,6 +77,10 @@ Global
 		{4A8FB21C-A30E-4B19-8ACD-BBABCA433DF2}.Debug|x64.Build.0 = Debug|x64
 		{4A8FB21C-A30E-4B19-8ACD-BBABCA433DF2}.Release|x64.ActiveCfg = Release|x64
 		{4A8FB21C-A30E-4B19-8ACD-BBABCA433DF2}.Release|x64.Build.0 = Release|x64
+		{B5528ED3-98F1-4139-9604-E8CF1F1B786A}.Debug|x64.ActiveCfg = Debug|x64
+		{B5528ED3-98F1-4139-9604-E8CF1F1B786A}.Debug|x64.Build.0 = Debug|x64
+		{B5528ED3-98F1-4139-9604-E8CF1F1B786A}.Release|x64.ActiveCfg = Release|x64
+		{B5528ED3-98F1-4139-9604-E8CF1F1B786A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
